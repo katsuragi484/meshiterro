@@ -17,4 +17,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image)
   end
+
+
+  def is_matching_login_user
+    user_id = params[:id].to_i
+    unless user_id == current_user.id
+      redirect_to post_images_path
+    end
+  end
+
 end
